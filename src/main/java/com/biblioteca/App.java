@@ -143,19 +143,31 @@ public class App {
         do {
             System.out.println("Ingresa el número de teléfono");
             nTelefono = Integer.parseInt(scan.nextLine());
-        } while (nTelefono < 9999999);
+        } while (nTelefono < 1);
 
         do {
             System.out.println("Ingresa el salario");
             salario = Double.parseDouble(scan.nextLine());
-        } while (salario < 2000000);
+
+            if (salario < 1500000) {
+                System.out.println("El salario es demasiado bajo.");
+            }
+        } while (salario < 1500000);
 
         do {
             System.out.println("Ingresa el número de oficina");
             numeroOficina = Integer.parseInt(scan.nextLine());
+
+            if (numeroOficina < 0) {
+                System.out.println("Ingresa un número de oficina real");
+            }
+
         } while (numeroOficina < 0);
 
         oficinista = new Oficinista(id, nombre, clave, direccion, nTelefono, salario, numeroOficina);
+
+        System.out.println("Oficinista agregado correctamente");
+        oficinista.printInfo();
 
         listaOficinistas.add(oficinista);
         return listaOficinistas;
