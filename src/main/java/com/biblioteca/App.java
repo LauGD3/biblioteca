@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 // Clases imports
-import com.biblioteca.users.Oficinista;
+import com.biblioteca.users.Personal;
 
 /**
  * Hello world!
@@ -13,7 +13,7 @@ import com.biblioteca.users.Oficinista;
  */
 public class App {
     public static void main(String[] args) {
-        List<Oficinista> listaOficinistas = new ArrayList<>();
+        List<Personal> listaStaff = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
 
         int optInicio;
@@ -23,10 +23,10 @@ public class App {
             if (optInicio == 3) {
                 int optAdmin;
                 do {
-                    optAdmin = adminOpt(scan, listaOficinistas);
-                    funcionesAdmin(optAdmin, scan, listaOficinistas);
+                    optAdmin = adminOpt(scan, listaStaff);
+                    funcionesAdmin(optAdmin, scan, listaStaff);
 
-                } while(optAdmin != 5);
+                } while (optAdmin != 5);
 
             }
         } while (optInicio != 2);
@@ -54,11 +54,7 @@ public class App {
         return opt;
     }
 
-    public static int adminOpt(Scanner scan, List<Oficinista> listaOficinistas) {
-        // Código para limpiar pantalla en terminales Linux/macOS
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-
+    public static int adminOpt(Scanner scan, List<Personal> listaOficinistas) {
         int opt;
         System.out.println("-------------------------------------------------");
         System.out.println("      Vienvenido al portal de administrador      ");
@@ -82,11 +78,10 @@ public class App {
     }
 
     // Ahora el método acepta los objetos necesarios para trabajar
-    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Oficinista> listaOficinistas) {
+    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Personal> listaOficinistas) {
         switch (optSeleccionada) {
             case 1:
-                // Ahora sí, le pasamos los datos al método de agregar
-                agregarOficinista(listaOficinistas, scan);
+                Personal.registrarMiembroStaff(listaOficinistas, scan, optSeleccionada);
                 break;
             case 5:
                 System.out.println("Saliendo al menú principal...");
@@ -97,91 +92,4 @@ public class App {
         }
     }
 
-    public static List<Oficinista> agregarOficinista(List<Oficinista> listaOficinistas, Scanner scan) {
-        int id;
-        String nombre;
-        String clave;
-        String direccion;
-        Integer nTelefono = null;
-        double salario;
-        int numeroOficina;
-        Oficinista oficinista;
-
-        System.out.println("----------------------------");
-        System.out.println("     Agregar oficinista     ");
-        System.out.println("----------------------------\n");
-
-        do {
-            System.out.println("Ingresa el ID: ");
-            id = Integer.parseInt(scan.nextLine());
-            for (Oficinista oficinistaI : listaOficinistas) {
-                if (oficinistaI.getId() == id) {
-                    System.out.println("El id que ingresaste ya está en uso.");
-                    id = -1;
-                    break;
-                }
-            }
-        } while (id < 0);
-
-        do {
-            System.out.println("Ingresa el nombre: ");
-            nombre = scan.nextLine();
-
-            if (nombre.trim().isEmpty()) {
-                System.out.println("Debes ingresar un nombre.\n");
-            }
-        } while (nombre.trim().isEmpty());
-
-        do {
-            System.out.println("Ingresa la clave temporal");
-            clave = scan.nextLine();
-
-            if (clave.trim().isEmpty()) {
-                System.out.println("Debes ingresar una clave.\n");
-            }
-
-        } while (clave.trim().isEmpty());
-
-        do {
-            System.out.println("Ingresa la direccion de la oficina");
-            direccion = scan.nextLine();
-
-            if (direccion.trim().isEmpty()) {
-                System.out.println("Debes ingresar una direccion.\n");
-            }
-
-        } while (direccion.trim().isEmpty());
-
-        do {
-            System.out.println("Ingresa el número de teléfono");
-            nTelefono = Integer.parseInt(scan.nextLine());
-        } while (nTelefono < 1);
-
-        do {
-            System.out.println("Ingresa el salario");
-            salario = Double.parseDouble(scan.nextLine());
-
-            if (salario < 1500000) {
-                System.out.println("El salario es demasiado bajo.");
-            }
-        } while (salario < 1500000);
-
-        do {
-            System.out.println("Ingresa el número de oficina");
-            numeroOficina = Integer.parseInt(scan.nextLine());
-
-            if (numeroOficina < 0) {
-                System.out.println("Ingresa un número de oficina real");
-            }
-
-        } while (numeroOficina < 0);
-
-        oficinista = new Oficinista(id, nombre, clave, direccion, nTelefono, salario, numeroOficina);
-
-        System.out.println("Oficinista agregado correctamente");
-        oficinista.printInfo();
-
-        listaOficinistas.add(oficinista);
-        return listaOficinistas;
-    }
 }
