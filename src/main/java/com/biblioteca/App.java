@@ -83,6 +83,9 @@ public class App {
             case 1:
                 Personal.registrarMiembroStaff(listaOficinistas, scan, optSeleccionada);
                 break;
+            case 2:
+                Personal.registrarMiembroStaff(listaOficinistas, scan, optSeleccionada);
+                break;
             case 5:
                 System.out.println("Saliendo al menú principal...");
                 break;
@@ -91,5 +94,4 @@ public class App {
                 break;
         }
     }
-
 }

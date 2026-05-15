@@ -11,6 +11,14 @@ public class Libro {
   private String categoria;
   private boolean estadoPrestamo;
 
+  public Libro(int idLibro, String titulo, String autor, String categoria) {
+    this.idLibro = idLibro;
+    this.titulo = titulo;
+    this.autor = autor;
+    this.categoria = categoria;
+    this.estadoPrestamo = false;
+  }
+
   public void print() {
     String res = "";
 
@@ -66,9 +74,6 @@ public class Libro {
       System.out.println("El libro está prestado, no se puede generar una solicitud");
       return;
     }
-
-    
-
   }
 
   public int getIdLibro() {
