@@ -16,16 +16,20 @@ public class App {
         List<Oficinista> listaOficinistas = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
 
-        int opt = pantallaInicio(scan);
-        switch (opt) {
-            case 3:
-                int adminOpt = adminOpt(scan);
+        int optInicio;
+        do {
+            optInicio = pantallaInicio(scan);
 
-                break;
+            if (optInicio == 3) {
+                int optAdmin;
+                do {
+                    optAdmin = adminOpt(scan, listaOficinistas);
+                    funcionesAdmin(optAdmin, scan, listaOficinistas);
 
-            default:
-                break;
-        }
+                } while(optAdmin != 5);
+
+            }
+        } while (optInicio != 2);
     }
 
     public static int pantallaInicio(Scanner scan) {
@@ -50,7 +54,11 @@ public class App {
         return opt;
     }
 
-    public static int adminOpt(Scanner scan) {
+    public static int adminOpt(Scanner scan, List<Oficinista> listaOficinistas) {
+        // Código para limpiar pantalla en terminales Linux/macOS
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         int opt;
         System.out.println("-------------------------------------------------");
         System.out.println("      Vienvenido al portal de administrador      ");
@@ -60,8 +68,8 @@ public class App {
             System.out.println("Elije una de las opciones:");
             System.out.println("1. Añadir Oficinista\n" +
                     "2. Añadir Bibliotecario\n" +
-                    "3. Ver libros prestados\n"
-                    + "4. Ver todos los libros\n" +
+                    "3. Ver libros prestados\n" +
+                    "4. Ver todos los libros\n" +
                     "5. Salir");
             System.out.println("-----------------\n");
 
@@ -73,16 +81,20 @@ public class App {
         return opt;
     }
 
-    public static void funcionesAdmin(int adminOpt) {
-        switch (adminOpt) {
+    // Ahora el método acepta los objetos necesarios para trabajar
+    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Oficinista> listaOficinistas) {
+        switch (optSeleccionada) {
             case 1:
-                agregarOficinista();
+                // Ahora sí, le pasamos los datos al método de agregar
+                agregarOficinista(listaOficinistas, scan);
                 break;
-
+            case 5:
+                System.out.println("Saliendo al menú principal...");
+                break;
             default:
+                System.out.println("Opción no implementada aún.");
                 break;
         }
-
     }
 
     public static List<Oficinista> agregarOficinista(List<Oficinista> listaOficinistas, Scanner scan) {
