@@ -9,7 +9,6 @@ public abstract class Personal extends Persona {
   }
 
   public void printInfo() {
-    System.out
-        .println("Nombre: " + nombre + "\n" + "Apellido: " + direccion + "\n" + "Número de telefono: " + nTelefono);
+    System.out.println("Nombre: " + nombre + "\n" + "Apellido: " + direccion + "\n" + "Número de telefono: " + nTelefono);
   }
 }

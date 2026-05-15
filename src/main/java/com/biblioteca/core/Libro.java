@@ -2,6 +2,8 @@ package com.biblioteca.core;
 
 import java.util.Scanner;
 
+import com.biblioteca.users.Lector;
+
 public class Libro {
   private int idLibro;
   private String titulo;
@@ -18,16 +20,19 @@ public class Libro {
       res = "No";
     }
 
+    System.out.println("------\n");
+
     System.out.println("ID: " + idLibro + "\n" +
         "Título: " + titulo + "\n" +
         "Autor: " + autor + "\n" +
         "Categoría: " + categoria + "\n" +
         "En prestamo: " + res);
 
+    System.out.println("------\n");
+
   }
 
-  public void cambiarInformacion() {
-    Scanner scan = new Scanner(System.in);
+  public void cambiarInformacion(Scanner scan) {
     System.out.println("----- Editanto información del libro: " + idLibro + " -----");
     System.out.println("(Presiona Enter para mantner la información actual)");
 
@@ -52,15 +57,17 @@ public class Libro {
       setCategoria(categoria);
     }
 
-    Integer val = null;
-    do {
-      System.out.println("Estado actual de prestamo: " + (this.estadoPrestamo ? "Sí" : "No"));
-      System.out.print("Escribe el nuevo estado (1. sí, 2. No): ");
-      val = Integer.parseInt(scan.nextLine());
+    System.out.println("---- Datos actualizados correctamente ----");
+    print();
+  }
 
-    } while ((val >= 1 && val <= 2) || val == null);
+  public void generarSolicitud(Lector lector) {
+    if (estadoPrestamo == true) {
+      System.out.println("El libro está prestado, no se puede generar una solicitud");
+      return;
+    }
 
-    scan.close();
+    
 
   }
 

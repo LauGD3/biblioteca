@@ -14,7 +14,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- El compilador fue cambiado debido a que fue construido con un compilador de maven para Java 7 --> 
+    <!-- El compilador fue cambiado debido a que el proyecto fue construido con un compilador de maven para Java 7 (originalmente este era 1.7) --> 
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
