@@ -1,5 +1,6 @@
 package com.biblioteca.core;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.biblioteca.users.Lector;
@@ -17,6 +18,28 @@ public class Libro {
     this.autor = autor;
     this.categoria = categoria;
     this.estadoPrestamo = false;
+  }
+
+  public Libro(int idLibro, String titulo, String autor, String categoria, boolean estadoPrestamo) {
+    this.idLibro = idLibro;
+    this.titulo = titulo;
+    this.autor = autor;
+    this.categoria = categoria;
+    this.estadoPrestamo = estadoPrestamo;
+  }
+
+  public static void listarLibrosPrestados(List<Libro> listLibros) {
+    for (Libro libro : listLibros) {
+      if (libro.isEstadoPrestamo()) {
+        libro.print();
+      }
+    }
+  }
+
+  public static void listarLibros(List<Libro> listLibros) {
+    for (Libro libro : listLibros) {
+      libro.print();
+    }
   }
 
   public void print() {

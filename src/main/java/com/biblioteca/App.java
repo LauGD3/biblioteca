@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.biblioteca.core.Libro;
+import com.biblioteca.users.Bibliotecario;
+import com.biblioteca.users.Oficinista;
 // Clases imports
 import com.biblioteca.users.Personal;
 
@@ -17,6 +19,29 @@ public class App {
     public static void main(String[] args) {
         List<Personal> listaStaff = new ArrayList<>();
         List<Libro> listaLibros = new ArrayList<>();
+
+        // --- QUEMADO DE DATOS (DATA SEED) ---
+
+        // 1. Oficinistas (id, nombre, clave, direccion, nTelefono, salario,
+        // numeroOficina)
+        listaStaff.add(new Oficinista(101, "Carlos Mendoza", "admin123", "Calle 45 #12-30", 3124567, 2500000.0, 1));
+        listaStaff
+                .add(new Oficinista(102, "Ana María Gómez", "oficina2026", "Carrera 23 #8-15", 3009876, 2600000.0, 2));
+
+        // 2. Bibliotecarios (id, nombre, clave, direccion, nTelefono, salario,
+        // numeroDespacho/Ubicacion)
+        listaStaff.add(new Bibliotecario(201, "Laura Restrepo", "biblio77", "Avenida Santander #45-12", 3154433,
+                2800000.0, 10));
+        listaStaff.add(new Bibliotecario(202, "Jorge Eliecer", "jorgeNtech", "Barrio El Cable", 3217766, 2900000.0, 11));
+
+        // 3. Libros (idLibro, titulo, autor, categoria, estadoPrestamo)
+        // Nota: Dejamos algunos en true (prestados) y otros en false (disponibles) para
+        // probar tu método de listarLibrosPrestados()
+        listaLibros.add(new Libro(1, "Cien Años de Soledad", "Gabriel García Márquez", "Realismo Mágico", false));
+        listaLibros.add(new Libro(2, "El Quijote de la Mancha", "Miguel de Cervantes", "Clásicos", true)); // Prestado
+        listaLibros.add(new Libro(3, "Cálculo Variable", "James Stewart", "Matemáticas", false));
+        listaLibros.add(new Libro(4, "Introducción a Java", "Deitel & Deitel", "Programación", true)); // Prestado
+        listaLibros.add(new Libro(5, "Álgebra Lineal", "Gilbert Strang", "Matemáticas", false));
         Scanner scan = new Scanner(System.in);
 
         int optInicio;
@@ -26,8 +51,8 @@ public class App {
             if (optInicio == 3) {
                 int optAdmin;
                 do {
-                    optAdmin = adminOpt(scan, listaStaff);
-                    funcionesAdmin(optAdmin, scan, listaStaff);
+                    optAdmin = adminOpt(scan);
+                    funcionesAdmin(optAdmin, scan, listaStaff, listaLibros);
 
                 } while (optAdmin != 6);
             }
@@ -56,7 +81,7 @@ public class App {
         return opt;
     }
 
-    public static int adminOpt(Scanner scan, List<Personal> listaOficinistas) {
+    public static int adminOpt(Scanner scan) {
         int opt;
         System.out.println("-------------------------------------------------");
         System.out.println("      Vienvenido al portal de administrador      ");
@@ -66,7 +91,7 @@ public class App {
             System.out.println("Elije una de las opciones:");
             System.out.println("1. Añadir Oficinista\n" +
                     "2. Añadir Bibliotecario\n" +
-                    "3. Ver Personal\n" +  
+                    "3. Ver Personal\n" +
                     "4. Ver libros prestados\n" +
                     "5. Ver todos los libros\n" +
                     "6. Salir");
@@ -80,7 +105,8 @@ public class App {
         return opt;
     }
 
-    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Personal> listaPersonal) {
+    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Personal> listaPersonal,
+            List<Libro> listLibros) {
         switch (optSeleccionada) {
             case 1:
                 Personal.registrarMiembroStaff(listaPersonal, scan, optSeleccionada);
@@ -91,8 +117,14 @@ public class App {
             case 3:
                 Personal.listarPersonal(listaPersonal);
                 break;
+            case 4:
+                Libro.listarLibrosPrestados(listLibros);
+                break;
             case 5:
-                System.out.println("Saliendo al menú principal...");
+                Libro.listarLibros(listLibros);
+                break;
+            case 6:
+                System.out.println("Saliendo del sistema");
                 break;
             default:
                 System.out.println("Opción no implementada aún.");
