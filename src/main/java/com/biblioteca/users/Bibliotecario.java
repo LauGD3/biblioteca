@@ -1,7 +1,6 @@
 package com.biblioteca.users;
 
 public class Bibliotecario extends Personal {
-  private int numeroOficina;
 
   public Bibliotecario(int id, String nombre, String clave, String direccion, int nTelefono, double salario,
       int numeroOficina) {
