@@ -20,23 +20,13 @@ public class App {
         List<Personal> listaStaff = new ArrayList<>();
         List<Libro> listaLibros = new ArrayList<>();
 
-        // --- QUEMADO DE DATOS (DATA SEED) ---
-
-        // 1. Oficinistas (id, nombre, clave, direccion, nTelefono, salario,
-        // numeroOficina)
         listaStaff.add(new Oficinista(101, "Carlos Mendoza", "admin123", "Calle 45 #12-30", 3124567, 2500000.0, 1));
-        listaStaff
-                .add(new Oficinista(102, "Ana María Gómez", "oficina2026", "Carrera 23 #8-15", 3009876, 2600000.0, 2));
+        listaStaff.add(new Oficinista(102, "Ana María Gómez", "oficina2026", "Carrera 23 #8-15", 3009876, 2600000.0, 2));
 
-        // 2. Bibliotecarios (id, nombre, clave, direccion, nTelefono, salario,
-        // numeroDespacho/Ubicacion)
         listaStaff.add(new Bibliotecario(201, "Laura Restrepo", "biblio77", "Avenida Santander #45-12", 3154433,
                 2800000.0, 10));
         listaStaff.add(new Bibliotecario(202, "Jorge Eliecer", "jorgeNtech", "Barrio El Cable", 3217766, 2900000.0, 11));
 
-        // 3. Libros (idLibro, titulo, autor, categoria, estadoPrestamo)
-        // Nota: Dejamos algunos en true (prestados) y otros en false (disponibles) para
-        // probar tu método de listarLibrosPrestados()
         listaLibros.add(new Libro(1, "Cien Años de Soledad", "Gabriel García Márquez", "Realismo Mágico", false));
         listaLibros.add(new Libro(2, "El Quijote de la Mancha", "Miguel de Cervantes", "Clásicos", true)); // Prestado
         listaLibros.add(new Libro(3, "Cálculo Variable", "James Stewart", "Matemáticas", false));
