@@ -4,6 +4,8 @@ package com.biblioteca;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.biblioteca.core.Libro;
 // Clases imports
 import com.biblioteca.users.Personal;
 
@@ -14,6 +16,7 @@ import com.biblioteca.users.Personal;
 public class App {
     public static void main(String[] args) {
         List<Personal> listaStaff = new ArrayList<>();
+        List<Libro> listaLibros = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
 
         int optInicio;
@@ -26,8 +29,7 @@ public class App {
                     optAdmin = adminOpt(scan, listaStaff);
                     funcionesAdmin(optAdmin, scan, listaStaff);
 
-                } while (optAdmin != 5);
-
+                } while (optAdmin != 6);
             }
         } while (optInicio != 2);
     }
@@ -64,27 +66,30 @@ public class App {
             System.out.println("Elije una de las opciones:");
             System.out.println("1. Añadir Oficinista\n" +
                     "2. Añadir Bibliotecario\n" +
-                    "3. Ver libros prestados\n" +
-                    "4. Ver todos los libros\n" +
-                    "5. Salir");
+                    "3. Ver Personal\n" +  
+                    "4. Ver libros prestados\n" +
+                    "5. Ver todos los libros\n" +
+                    "6. Salir");
             System.out.println("-----------------\n");
 
             System.out.print("Ingresa la opción: ");
             opt = Integer.parseInt(scan.nextLine());
 
-        } while (opt < 1 || opt > 5);
+        } while (opt < 1 || opt > 6);
 
         return opt;
     }
 
-    // Ahora el método acepta los objetos necesarios para trabajar
-    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Personal> listaOficinistas) {
+    public static void funcionesAdmin(int optSeleccionada, Scanner scan, List<Personal> listaPersonal) {
         switch (optSeleccionada) {
             case 1:
-                Personal.registrarMiembroStaff(listaOficinistas, scan, optSeleccionada);
+                Personal.registrarMiembroStaff(listaPersonal, scan, optSeleccionada);
                 break;
             case 2:
-                Personal.registrarMiembroStaff(listaOficinistas, scan, optSeleccionada);
+                Personal.registrarMiembroStaff(listaPersonal, scan, optSeleccionada);
+                break;
+            case 3:
+                Personal.listarPersonal(listaPersonal);
                 break;
             case 5:
                 System.out.println("Saliendo al menú principal...");

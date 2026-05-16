@@ -37,7 +37,6 @@ public class Libro {
         "En prestamo: " + res);
 
     System.out.println("------\n");
-
   }
 
   public void cambiarInformacion(Scanner scan) {

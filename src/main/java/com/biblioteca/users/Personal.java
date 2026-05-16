@@ -15,7 +15,21 @@ public abstract class Personal extends Persona {
     this.numeroOficina = numeroOficina;
   }
 
-  // Dentro de la clase Personal.java
+  public static void listarPersonal(List<Personal> lista) {
+    System.out.println("--------------------------------");
+    System.out.println("      Listado del Personal      ");
+    System.out.println("--------------------------------\n");
+
+    for (Personal personal : lista) {
+      System.out.println("--------------------------------");
+      System.out.println("ID: " + personal.getId() + "\n" +
+          "Nombre: " + personal.getNombre() + "\n" +
+          "Dirección: " + personal.getDireccion() + "\n" +
+          "Número de teléfono: " + personal.getnTelefono() + "\n");
+      System.out.println("--------------------------------");
+    }
+  }
+
   public static void registrarMiembroStaff(List<Personal> lista, Scanner scan, int tipo) {
     int id;
     String nombre;
@@ -94,7 +108,6 @@ public abstract class Personal extends Persona {
 
     } while (numeroOficina < 0);
 
-
     if (tipo == 1) {
       // Creamos Oficinista pero se guarda en la lista de Personal
       lista.add(new Oficinista(id, nombre, clave, direccion, nTelefono, salario, numeroOficina));
@@ -108,8 +121,8 @@ public abstract class Personal extends Persona {
 
   public void printInfo() {
     System.out
-        .println("Nombre: " + nombre + "\n" + 
-        "Número de telefono: " + nTelefono + "\n" +
-        "Número de oficina : " + numeroOficina);
+        .println("Nombre: " + nombre + "\n" +
+            "Número de telefono: " + nTelefono + "\n" +
+            "Número de oficina : " + numeroOficina);
   }
 }
