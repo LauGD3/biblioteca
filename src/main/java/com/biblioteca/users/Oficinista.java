@@ -6,9 +6,4 @@ public class Oficinista extends Personal {
     super(id, nombre, clave, direccion, nTelefono, salario, numeroOficina);
 
   }
-
-  @Override
-  public void printInfo() {
-    super.printInfo();
-  }
 }

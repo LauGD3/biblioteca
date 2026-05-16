@@ -6,10 +6,4 @@ public class Bibliotecario extends Personal {
       int numeroOficina) {
     super(id, nombre, clave, direccion, nTelefono, salario, numeroOficina);
   }
-
-  @Override
-  public void printInfo() {
-    super.printInfo();
-    System.out.println("Número de oficina: " + numeroOficina);
-  }
 }

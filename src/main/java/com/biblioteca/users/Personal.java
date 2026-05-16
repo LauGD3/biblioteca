@@ -125,4 +125,20 @@ public abstract class Personal extends Persona {
             "Número de telefono: " + nTelefono + "\n" +
             "Número de oficina : " + numeroOficina);
   }
+
+  public double getSalario() {
+    return salario;
+  }
+
+  public void setSalario(double salario) {
+    this.salario = salario;
+  }
+
+  public int getNumeroOficina() {
+    return numeroOficina;
+  }
+
+  public void setNumeroOficina(int numeroOficina) {
+    this.numeroOficina = numeroOficina;
+  }
 }
