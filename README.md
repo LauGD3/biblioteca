@@ -20,6 +20,9 @@ El diseño del software sigue una jerarquía estricta basada en POO. A continuac
 ### Análisis de la estructura
 
 - **jerarquía de usuarios:** la clase abstracta `persona` encapsula los datos de identidad base. de ella hereda de forma directa `lector` y la clase abstracta `personal` (la cual centraliza atributos laborales como el salario y el número de ubicación física de las oficinas asignadas para proveer polimorfismo a `oficinista` y `bibliotecario`).
+- **Entidades del Núcleo del Problema:** Las clases `Libro` y `Solicitud` representan el eje funcional del inventario y el flujo del sistema:
+  - `Libro`: Modela el recurso físico a gestionar, conteniendo atributos críticos para el control e identificación en el inventario (título, autor, categoría) y un estado booleano (`estadoPrestamo`) que determina su disponibilidad en tiempo real.
+  - `Solicitud`: Actúa como una clase de acoplamiento que registra la acción de préstamo en una fecha específica (`LocalDate`). No almacena datos aislados, sino que contiene referencias directas instancias de tipo `Lector` (el solicitante) y `Libro` (el recurso prestado), aplicando el principio de composición para auditar las interacciones del sistema.
 - **Relaciones de dependencia y asociación:** la clase principal `app` actúa como la controladora del sistema, gestionando las colecciones de datos e interactuando con las clases del núcleo del problema. (`libro` y `solicitud`).
 
 ---
