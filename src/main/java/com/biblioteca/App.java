@@ -91,7 +91,7 @@ public class App {
     public static int pantallaInicio(Scanner scan) {
         int opt;
         System.out.println("-----------------------------------------------------------");
-        System.out.println("      Vienvenido al sistema de gestion de Bebliotecas      ");
+        System.out.println("      Bienvenido al sistema de gestion de Bebliotecas      ");
         System.out.println("-----------------------------------------------------------\n");
  
         do {
@@ -111,7 +111,7 @@ public class App {
     public static int adminOpt(Scanner scan) {
         int opt;
         System.out.println("-------------------------------------------------");
-        System.out.println("      Vienvenido al portal de administrador      ");
+        System.out.println("      Bienvenido al portal de administrador      ");
         System.out.println("-------------------------------------------------\n");
  
         do {
