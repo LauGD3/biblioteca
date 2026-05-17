@@ -1,13 +1,41 @@
-
 package com.biblioteca.users;
 
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase abstracta que representa a un miembro del personal de la biblioteca.
+ *
+ * Extiende {@link Persona} agregando salario y número de oficina.
+ * Es la clase padre de {@link Bibliotecario} y {@link Oficinista}.
+ * No se puede instanciar directamente.
+ *
+ * @author Cristian Martínez (LauGD)
+ * @version 1.0
+ * @since 2026
+ */
 public abstract class Personal extends Persona {
+
+  /** Salario del miembro del personal. */
   protected double salario;
+
+  /** Número de la oficina asignada. */
   private int numeroOficina;
 
+  // ─── CONSTRUCTOR
+  // ──────────────────────────────────────────────────────────────
+
+  /**
+   * Crea un miembro del personal con toda su información.
+   *
+   * @param id            ID único
+   * @param nombre        nombre completo
+   * @param clave         clave de acceso al sistema
+   * @param direccion     dirección de residencia
+   * @param nTelefono     número de teléfono
+   * @param salario       salario (mínimo 1.500.000)
+   * @param numeroOficina número de la oficina asignada
+   */
   public Personal(int id, String nombre, String clave, String direccion, int nTelefono, double salario,
       int numeroOficina) {
     super(id, nombre, clave, direccion, nTelefono);
@@ -15,6 +43,14 @@ public abstract class Personal extends Persona {
     this.numeroOficina = numeroOficina;
   }
 
+  // ─── MÉTODOS ESTÁTICOS
+  // ────────────────────────────────────────────────────────
+
+  /**
+   * Muestra en consola la lista de todo el personal registrado.
+   *
+   * @param lista lista de personal a mostrar
+   */
   public static void listarPersonal(List<Personal> lista) {
     System.out.println("--------------------------------");
     System.out.println("      Listado del Personal      ");
@@ -30,6 +66,21 @@ public abstract class Personal extends Persona {
     }
   }
 
+  /**
+   * Pide los datos de un nuevo miembro del personal por consola y lo agrega a la
+   * lista.
+   * Según el tipo, crea un {@link Oficinista} o un {@link Bibliotecario}.
+   *
+   * Validaciones:
+   * - El ID no puede estar repetido.
+   * - Nombre, clave y dirección no pueden estar vacíos.
+   * - El salario mínimo es 1.500.000.
+   * - El número de oficina debe ser mayor a 0.
+   *
+   * @param lista lista donde se agrega el nuevo miembro
+   * @param scan  scanner para leer la entrada del usuario
+   * @param tipo  1 para Oficinista, cualquier otro valor para Bibliotecario
+   */
   public static void registrarMiembroStaff(List<Personal> lista, Scanner scan, int tipo) {
     int id;
     String nombre;
@@ -109,35 +160,46 @@ public abstract class Personal extends Persona {
     } while (numeroOficina < 0);
 
     if (tipo == 1) {
-      // Creamos Oficinista pero se guarda en la lista de Personal
       lista.add(new Oficinista(id, nombre, clave, direccion, nTelefono, salario, numeroOficina));
       System.out.println("Oficinista registrado.");
     } else {
-      // Creamos Bibliotecario
       lista.add(new Bibliotecario(id, nombre, clave, direccion, nTelefono, salario, numeroOficina));
       System.out.println("Bibliotecario registrado.");
     }
   }
 
+  // ─── MÉTODOS DE INSTANCIA
+  // ─────────────────────────────────────────────────────
+
+  /**
+   * Imprime en consola el nombre, teléfono y número de oficina del miembro del
+   * personal.
+   */
   public void printInfo() {
-    System.out
-        .println("Nombre: " + nombre + "\n" +
-            "Número de telefono: " + nTelefono + "\n" +
-            "Número de oficina : " + numeroOficina);
+    System.out.println("Nombre: " + nombre + "\n" +
+        "Número de telefono: " + nTelefono + "\n" +
+        "Número de oficina : " + numeroOficina);
   }
 
+  // ─── GETTERS Y SETTERS
+  // ────────────────────────────────────────────────────────
+
+  /** @return el salario del miembro del personal */
   public double getSalario() {
     return salario;
   }
 
+  /** @param salario nuevo salario */
   public void setSalario(double salario) {
     this.salario = salario;
   }
 
+  /** @return el número de oficina asignada */
   public int getNumeroOficina() {
     return numeroOficina;
   }
 
+  /** @param numeroOficina nuevo número de oficina */
   public void setNumeroOficina(int numeroOficina) {
     this.numeroOficina = numeroOficina;
   }

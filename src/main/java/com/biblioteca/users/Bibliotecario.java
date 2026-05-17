@@ -7,7 +7,7 @@ package com.biblioteca.users;
  * ya que toda la información del bibliotecario (nombre, clave, salario, etc.)
  * se maneja en la clase padre.
  *
- * @author Santiago Jaramillo (Okami012)
+ * @author Cristian Martínez (LauGD3)
  * @version 1.0
  * @since 2026
  */

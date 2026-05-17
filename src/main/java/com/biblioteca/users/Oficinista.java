@@ -7,7 +7,7 @@ package com.biblioteca.users;
  * atributos ni comportamiento propio. La distinción entre ambos roles existe
  * para diferenciar tipos de personal dentro del sistema.
  *
- * @author Santiago Jaramillo (Okami012)
+ * @author Cristian Martinez (LauGD3)
  * @version 1.0
  * @since 2026
  */
